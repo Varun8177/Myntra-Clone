@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        #main {
+            border: 0;
+            height: 600px;
+            width: 500px;
+            margin: auto;
+            border-radius: 20px;
+            padding: 20px 20px 0 20px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+
+        img {
+            height: 100px;
+            width: 200px;
+            border: 0;
+            margin: auto;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        input,
+        button {
+            width: 90%;
+            height: 40px;
+            border-radius: 10px;
+            padding-left: 10px;
+            border: 1px solid grey;
+        }
+
+        p {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        button {
+            border: 0;
+            background-color: grey;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="Untitled.png" alt="">
+    <div id="main">
+        <h2>Sign Up</h2>
+        <h3>Full Name</h3>
+        <input id="name" type="text" placeholder="Enter your full name">
+        <h3>Email</h3>
+        <input id="email" type="text" placeholder="Enter Email">
+        <h3>Password</h3>
+        <input id="pass" type="text" placeholder="Enter Password">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus obcaecati dolore labore cumque minima
+            a.</p>
+        <a id="" href="login.html">
+            <button>SIGN UP</button>
+        </a>
+        <p>Already have an account? <a href="login.html">Log In</a></p>
+        <h1></h1>
+    </div>
+</body>
+
+</html>
+<script>
+    let info = JSON.parse(localStorage.getItem("details")) || []
+    document.querySelector("button").addEventListener("click", myfun)
+    function myfun(event) {
+
+        let name_entered = document.querySelector("#name").value;
+        let email_entered = document.querySelector("#email").value;
+        let pass_entered = document.querySelector("#pass").value;
+
+        if (name_entered !== "" && email_entered !== "" && pass_entered !== "") {
+
+            let details_obj = { name_entered, email_entered, pass_entered }
+            info.push(details_obj)
+            localStorage.setItem("details", JSON.stringify(info))
+
+        } else {
+            event.preventDefault()
+            alert("Please Fill Details")
+        }
+
+    }
+
+</script>
