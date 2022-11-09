@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <style>
+        #main {
+            border: 0;
+            height: 600px;
+            width: 500px;
+            margin: auto;
+            border-radius: 20px;
+            padding: 20px 20px 0 20px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+
+        img {
+            height: 100px;
+            width: 200px;
+            border: 0;
+            margin: auto;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        input,
+        button {
+            width: 90%;
+            height: 40px;
+            border-radius: 10px;
+            padding-left: 10px;
+            border: 1px solid grey;
+        }
+
+        p {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        button {
+            border: 0;
+            background-color: grey;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="Untitled.png" alt="">
+    <div id="main">
+        <h2>Welcome To House Of Fashion</h2>
+        <h2>Log In</h2>
+        <input type="Number" placeholder="Enter Your Mobile Number">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus obcaecati dolore labore cumque minima
+            a.</p>
+        <a href="OTP.html"><button>Log In</button></a>
+
+        <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+        <h1></h1>
+    </div>
+</body>
+
+</html>
+<script>
+    let x = JSON.parse(localStorage.getItem("details"))
+    document.querySelector("button").addEventListener("click", myfun)
+    function myfun() {
+        let check_email = document.querySelector("#email").value;
+        let check_pass = document.querySelector("#pass").value
+        if (x.email_entered == check_email && x.pass_entered == check_pass) {
+            alert("Login Successful")
+        } else {
+            alert("Wrong details");
+        }
+    }
+
+
+</script>
