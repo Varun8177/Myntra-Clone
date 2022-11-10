@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <style>
+        #nav>a>img {
+            height: 120px;
+            width: 150px;
+        }
+
+        h1 {
+            color: rgb(62, 65, 82);
+        }
+
+        #nav {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+            margin-bottom: 20px;
+            position: fixed;
+            background-color: white;
+            width: 100%;
+            margin-top: -20px;
+        }
+
+        #nav>input {
+            width: 20%;
+            height: 40px;
+            width: 30%;
+            align-self: center;
+            border: 0px solid grey;
+            background-color: rgb(239, 239, 239);
+            border-radius: 5px;
+            padding-left: 10px;
+        }
+
+        #nav>h2:hover {
+            text-decoration-line: underline;
+            text-decoration-color: brown;
+            text-underline-offset: 45px;
+            text-decoration-thickness: 5px;
+        }
+
+        #nav>a>button {
+            border: 0;
+            background-color: white;
+        }
+
+        #nav>a>button:hover {
+            text-decoration-line: underline;
+            text-decoration-color: brown;
+            text-underline-offset: 45px;
+            text-decoration-thickness: 5px;
+            cursor: pointer;
+        }
+
+        #nothing {
+            background-color: white;
+            height: 150px;
+        }
+
+        #main>form {
+            border: 1px solid rgb(201, 201, 201);
+            width: 150px;
+            text-align: center;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            text-align: left;
+            padding-left: 5px;
+
+        }
+
+        #main>form>p:hover {
+            cursor: pointer;
+            color: rgb(255, 63, 108);
+        }
+
+        #main {
+            width: 70%;
+            border: 0px solid red;
+            margin: auto;
+            display: flex;
+            margin-top: -10px;
+        }
+
+        #category {
+            text-align: left;
+            cursor: default;
+            color: gray;
+        }
+        #over{
+            text-align: left;
+            cursor: default;
+            color: gray;
+
+        }
+        #over:hover{
+            cursor: pointer;
+        }
+
+        #content {
+            width: auto;
+            margin-left: 10px;
+            width: 100%;
+        }
+
+        #head {
+            width: 70%;
+            margin: auto;
+        }
+
+        #first {
+            background-color: rgb(201, 203, 203);
+            height: 200px;
+            display: flex;
+            align-items: center;
+        }
+
+        #first>img {
+            margin-right: 50px;
+            margin-left: 30px;
+            height: 100px;
+            width: 100px;
+        }
+
+        #sec {
+            height: 700px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        #sec>div {
+            border: 1px solid rgb(181, 181, 181);
+            text-align: center;
+            margin-top: 20px;
+            align-items: center;
+
+        }
+
+        #sec>div:hover {
+            background-color: rgb(181, 181, 181);
+            cursor: pointer;
+        }
+
+        #sec>div>img {
+            margin: auto;
+            height: 50px;
+            width: 50px;
+            display: block;
+            margin-top: 30px;
+        }
+
+        #content {
+            padding: 10px 50px 10px 0px;
+
+        }
+        #content>form{
+            width: 60%;
+            padding-top: 30px;
+            padding-left: 200px;
+          
+        }
+        #content>form>div{
+           
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        #content>form>div>form>p{
+            margin-bottom: 50px;
+
+        }
+        #content>form>button{
+            width: 80%;
+            margin: auto;
+            background-color: rgb(255,63,108);
+            color:  white;
+            font-size: 20px;
+            padding: 10px 10px 10px 10px;
+            border: 0;
+        }
+        #content>form>button:hover{
+            cursor: pointer;
+        }
+       
+    </style>
+</head>
+
+<body>
+    <div id="nav">
+        <!-- Navbar -->
+        <a href="myntra.html">
+            <img src="https://www.logolynx.com/images/logolynx/e5/e5856b5c633b21b213f91bd753e0383a.jpeg" alt="">
+        </a>
+
+        <a href="mens.html">
+            <button>
+                <h2>Mens</h2>
+            </button>
+        </a>
+        <a href="womens.html">
+            <button>
+                <h2>Womens</h2>
+            </button>
+        </a>
+        <a href="kids.html">
+            <button>
+                <h2>Kids</h2>
+            </button>
+        </a>
+        <h2>Home-Living</h2>
+        <h2>Beauty</h2>
+        <h2>Studio</h2>
+        <input type="text" placeholder="Search">
+        <a href="profile.html">
+            <button>
+                <h2>profile</h2>
+            </button>
+        </a>
+        <a href="wishlist.html">
+            <button>
+                <h2>Wishlist</h2>
+            </button>
+        </a>
+        <a href="cart.html">
+            <button>
+                <h2>Bag</h2>
+            </button>
+        </a>
+    </div>
+    <div id="nothing"></div>
+    <div id="head">
+        <h2>Account</h2>
+        <hr>
+    </div>
+
+    <div id="main">
+        <form>
+            <h4 onclick="overview()" id="over">Overview</h4>
+            <hr>
+            <h4 id="category">Orders</h4>
+            <p>Orders & Returns</p>
+            <hr>
+            <h4 id="category">CREDITS</h4>
+            <p>Coupons</p>
+            <p>Myn Credit</p>
+            <p>Myn Cash</p>
+            <hr>
+            <h4 id="category">ACCOUNT</h4>
+            <p onclick="my_profile()">Profile</p>
+            <p>Save cards</p>
+            <p>Save VPA</p>
+            <p>Addresses</p>
+            <p>Myntra Insider</p>
+            <hr>
+            <h4 id="category">LEGAL</h4>
+            <p>Terms of Use</p>
+            <p>Privacy Policy</p>
+        </form>
+
+        <div id="content">
+           
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+<script>
+    function overview() {
+        document.querySelector("#content").innerHTML=""
+        let content = [
+            "Orders",
+            "collection And Wishlist",
+            "Myntra credit",
+            "MynCash",
+            "Saved cards",
+            "Saved VPA",
+            "Addresses",
+            "Coupons",
+            "Profile Details"
+        ]
+        let p = [
+            "Check your order status",
+            "check your Wishlist",
+            "Earn Myn Credit",
+            "earn myncash",
+            "check Your saved Cards",
+            "Check your VPA",
+            "Check your saved addresses",
+            "Earn and see your coupons",
+            "View your profile etails"
+
+        ]
+        let my_email = JSON.parse(localStorage.getItem("details"))
+
+        let div = document.createElement("div")
+        div.setAttribute("id", "first")
+        let pic = document.createElement("img")
+        pic.setAttribute("src", "https://constant.myntassets.com/mymyntra/assets/img/default-image.png")
+        let email = document.createElement("p")
+        email.innerText = my_email.email_entered
+        div.append(pic, email)
+        document.querySelector("#content").append(div)
+        let div2 = document.createElement("div")
+        div2.setAttribute("id", "sec")
+        for (let i = 0; i < 9; i++) {
+            let x = document.createElement("div")
+            let pro = document.createElement("img")
+            pro.setAttribute("src", "https://constant.myntassets.com/mymyntra/assets/img/profile-orders.png")
+            let h2 = document.createElement("h3")
+            h2.innerText = content[i]
+            let m = document.createElement("p")
+            m.innerText = p[i]
+            x.append(pro, h2, m)
+            div2.append(x)
+        }
+        document.querySelector("#content").append(div2)
+    }
+
+   let x= JSON.parse(localStorage.getItem("New_Details"))
+    let form=document.createElement("form")
+    let h2=document.createElement("h2")
+    h2.innerText="Profile Details"
+    let hr=document.createElement("hr")
+    let div2=document.createElement("div")
+    let form1=document.createElement("form")
+    let form2=document.createElement("form")   
+    let fn1=document.createElement("p")
+    fn1.innerText="Full Name"
+    let fn2=document.createElement("p")
+    fn2.innerText="Email"
+    let fn3=document.createElement("p")
+    fn3.innerText="Mobile Number"
+    let fn4=document.createElement("p")
+    fn4.innerText="Gender"
+    let fn5=document.createElement("p")
+    fn5.innerText="Date of Birth"
+    form1.append(fn1,fn2,fn3,fn4,fn5)
+
+    let gn1=document.createElement("p")
+    gn1.innerText=x.name
+    let gn2=document.createElement("p")
+    gn2.innerText=x.email
+    let gn3=document.createElement("p")
+    gn3.innerText=x.mobile
+    let gn4=document.createElement("p")
+    gn4.innerText="--------"
+    let gn5=document.createElement("p")
+    gn5.innerText="--------"
+    form2.append(gn1,gn2,gn3,gn4,gn5)
+
+    div2.append(form1,form2)
+    let btn=document.createElement("button")
+    btn.innerText="Edit"
+    form.append(h2,hr,div2,btn)
+    document.querySelector("#content").append(form)
+
+
+
+    function my_profile(){
+        document.querySelector("#content").innerHTML=""
+        
+   let x= JSON.parse(localStorage.getItem("New_Details"))
+    let form=document.createElement("form")
+    let h2=document.createElement("h2")
+    h2.innerText="Profile Details"
+    let hr=document.createElement("hr")
+    let div2=document.createElement("div")
+    let form1=document.createElement("form")
+    let form2=document.createElement("form")   
+    let fn1=document.createElement("p")
+    fn1.innerText="Full Name"
+    let fn2=document.createElement("p")
+    fn2.innerText="Email"
+    let fn3=document.createElement("p")
+    fn3.innerText="Mobile Number"
+    let fn4=document.createElement("p")
+    fn4.innerText="Gender"
+    let fn5=document.createElement("p")
+    fn5.innerText="Date of Birth"
+    form1.append(fn1,fn2,fn3,fn4,fn5)
+
+    let gn1=document.createElement("p")
+    gn1.innerText=x.name
+    let gn2=document.createElement("p")
+    gn2.innerText=x.email
+    let gn3=document.createElement("p")
+    gn3.innerText=x.mobile
+    let gn4=document.createElement("p")
+    gn4.innerText="--------"
+    let gn5=document.createElement("p")
+    gn5.innerText="--------"
+    form2.append(gn1,gn2,gn3,gn4,gn5)
+
+    div2.append(form1,form2)
+    let btn=document.createElement("button")
+    btn.innerText="Edit"
+    form.append(h2,hr,div2,btn)
+    document.querySelector("#content").append(form)
+
+    }
+
+</script>
+<!-- 
+let p=document.createElement("p")
+    p.innerText="Full Name"+x.name_entered -->
