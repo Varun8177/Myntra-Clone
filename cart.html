@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #nav>a>img {
+            height: 120px;
+            width: 150px;
+            margin-left: -200px;
+        }
+
+        h1 {
+            color: rgb(62, 65, 82);
+        }
+
+        #nav {
+            display: flex;
+            justify-content: space-evenly;
+            width: 80%;
+            align-items: center;
+            box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+            margin-bottom: 20px;
+            background-color: white;
+            width: 100%;
+            margin-top: -20px;
+        }
+
+        #nav>input {
+            width: 20%;
+            height: 40px;
+            width: 30%;
+            align-self: center;
+            border: 0px solid grey;
+            background-color: rgb(239, 239, 239);
+            border-radius: 5px;
+            padding-left: 10px;
+        }
+
+        #nav>h2:hover {
+            text-decoration-line: underline;
+            text-decoration-color: brown;
+            text-underline-offset: 45px;
+            text-decoration-thickness: 5px;
+        }
+
+        #nav>a>button {
+            border: 0;
+            background-color: white;
+        }
+
+        #nav>a>button:hover {
+            text-decoration-line: underline;
+            text-decoration-color: brown;
+            text-underline-offset: 45px;
+            text-decoration-thickness: 5px;
+            cursor: pointer;
+        }
+
+        #main>form {
+            border: 1px solid rgb(201, 201, 201);
+            width: 150px;
+            text-align: center;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            text-align: left;
+            padding-left: 5px;
+
+        }
+
+        #main>p:hover {
+            cursor: pointer;
+
+        }
+
+        #main {
+            border: 0px solid red;
+            margin-top: -10px;
+            justify-content: space-around;
+            margin-bottom: 50px;
+            position: fixed;
+            margin-left: 20px;
+            margin-left: 80%;
+        }
+
+        #content {
+            width: 75%;
+            height: 200px;
+            /* border: 2px solid red; */
+            padding-left: 30px;
+        }
+
+        #content>div>li {
+            color: grey;
+        }
+
+        #content>div {
+            border: 1px solid rgb(207, 205, 205);
+            padding-left: 20px;
+            padding-bottom: 20px;
+            padding-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        #flex {
+            display: flex;
+            align-items: center;
+        }
+
+        #flex>img {
+            margin-right: 20px;
+        }
+        #sec_main{
+            display: flex;
+        }
+        #sec_main>div:nth-child(1){
+            margin-right: 20px;
+        }
+        button{
+            background-color: rgb(255, 63, 108);
+            border: 0;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="nav">
+        <!-- Navbar -->
+        <a href="myntra.html">
+            <img src="https://www.logolynx.com/images/logolynx/e5/e5856b5c633b21b213f91bd753e0383a.jpeg" alt="">
+        </a>
+        <img src="payment_bag.png" alt="">
+        <img src="secure_bag.png" alt="">
+    </div>
+    <div id="main">
+        <h2>FILTER</h2>
+        <p>Mens</p>
+        <p>Womens</p>
+        <p>Boys</p>
+        <p>Girls</p>
+        <hr>
+        <h2>SORT</h2>
+        <p onclick="lth()">Price: Low to High</p>
+        <p onclick="htl()">Price: High to Low</p>
+    </div>
+    <div id="move">
+        <div id="left_empty">
+
+        </div>
+
+        <div id="content">
+            <div>
+                <h2>Available Offers</h2>
+                <li>5% Unlimited Cashback on Flipkart Axis Bank Credit Card. TCA</li>
+                <li>5% Cashback on Paytm Postpaid transactions on a min spend of Rs 1,500. TCA</li>
+                <li>10% Cashback upto Rs 100 on Ola Money Postpaid or Wallet transaction on a min spend of Rs 1000 . TCA
+                </li>
+                <li>10% Cashback upto Rs 150 on Freecharge Paylater transaction. TCA</li>
+                <li>Upto Rs 750 Cashback on Mobikwik Wallet Transactions on a min spend of Rs 2,000.Use code MBK750 on
+                    Mobikwik.TCA</li>
+            </div>
+            <div id="flex">
+                <img src="https://constant.myntassets.com/checkout/assets/img/ship-free.webp" alt="">
+                <p>YAY! No convenience Fee on this Order</p>
+            </div>
+            <div>
+                <p id="items"></p>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>
+<script>
+
+    let x = JSON.parse(localStorage.getItem("cart"))
+    display(x)
+
+    function display(x) {
+        document.querySelector("#items").innerText = "Items available in your bag: " + x.length
+        x.forEach(elem => {
+            let div = document.createElement("div")
+            let pic = document.createElement("img")
+            pic.setAttribute("src", elem.images[0])
+            let div2 = document.createElement("div")
+            let h2 = document.createElement("h2")
+            h2.innerText = elem.title
+            let p2 = document.createElement("p")
+            p2.innerText = elem.subtitle
+            let price=document.createElement("p")
+            price.innerText="Price: "+elem.discounted_price
+            let rating=document.createElement("p")
+            rating.innerText="Rating: "+elem.rating
+            let remove=document.createElement("button")
+            remove.innerText="Remove"
+            div.append(pic)
+            div2.append(h2, p2,price,rating,remove)          
+            let main = document.createElement("div")
+            main.append(div, div2)
+            main.setAttribute("id","sec_main")
+            document.querySelector("#content").append(main)
+        });
+
+
+    }
+
+
+</script>

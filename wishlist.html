@@ -206,11 +206,7 @@
                 <h2>profile</h2>
             </button>
         </a>
-        <a href="wishlist.html">
-            <button>
-                <h2>Wishlist</h2>
-            </button>
-        </a>
+        <h2>wishlist</h2>
         <a href="cart.html">
             <button>
                 <h2>Bag</h2>
@@ -6939,22 +6935,21 @@
         }
     ] 
     let cart=JSON.parse(localStorage.getItem("cart")) ||[]
-    let wish=JSON.parse(localStorage.getItem("wish")) ||[]
     
     let men = data.filter((elem) => {
         return elem.category == "Mens" && elem.images[0] !== null && elem.title != null && elem.discounted_price != null && elem.rating != null && elem.discount != null && elem.subtitle !== null
     })
-    display(men)
-    function display(men) {
+     let x = JSON.parse(localStorage.getItem("wish"))
+    display(x)
+    function display(x) {
         document.querySelector("#content").innerHTML = ""
 
-        men.forEach((elem) => {
+        x.forEach((elem) => {
             let div = document.createElement("div")
             let x = document.createElement("img")
             let btn = document.createElement("button")
             btn.innerText = "Add to Cart"
-            let btn2 = document.createElement("button")
-            btn2.innerText = "Wish"
+            
             let h2 = document.createElement("h2")
             h2.innerText = elem.title
             let p2 = document.createElement("p")
@@ -6968,13 +6963,8 @@
                 cart.push(elem)
                 localStorage.setItem("cart",JSON.stringify(cart) )
             })
-            btn2.addEventListener("click",function(){
-                wish.push(elem)
-                localStorage.setItem("wish",JSON.stringify(wish) )
-            })
-
-            div.append(x, h2, p2, price, rating, btn, btn2)
-            btn2.setAttribute("id", "wish")
+            div.append(x, h2, p2, price, rating, btn)
+     
             btn.setAttribute("id", "cart")
             document.querySelector("#content").append(div)
         })
@@ -6989,19 +6979,19 @@
     console.log(search)
 
     function lth() {
-        men.sort((a, b) => {
+        x.sort((a, b) => {
             return a.discounted_price - b.discounted_price
         })
-        display(men)
+        display(x)
 
     }
 
     function htl() {
 
-        men.sort((a, b) => {
+        x.sort((a, b) => {
             return b.discounted_price - a.discounted_price
         })
-        display(men)
+        display(x)
 
     }
 

@@ -64,19 +64,20 @@
             height: 150px;
         }
 
-        form {
+        #main>form {
             border: 1px solid rgb(201, 201, 201);
             width: 150px;
             text-align: center;
             padding-top: 20px;
             padding-bottom: 20px;
             text-align: left;
+            padding-left: 5px;
 
         }
 
-        form>p:hover {
+        #main>form>p:hover {
             cursor: pointer;
-            color: aquamarine;
+            color: rgb(255, 63, 108);
         }
 
         #main {
@@ -91,6 +92,15 @@
             text-align: left;
             cursor: default;
             color: gray;
+        }
+        #over{
+            text-align: left;
+            cursor: default;
+            color: gray;
+
+        }
+        #over:hover{
+            cursor: pointer;
         }
 
         #content {
@@ -150,6 +160,35 @@
             padding: 10px 50px 10px 0px;
 
         }
+        #content>form{
+            width: 60%;
+            padding-top: 30px;
+            padding-left: 200px;
+          
+        }
+        #content>form>div{
+           
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        #content>form>div>form>p{
+            margin-bottom: 50px;
+
+        }
+        #content>form>button{
+            width: 80%;
+            margin: auto;
+            background-color: rgb(255,63,108);
+            color:  white;
+            font-size: 20px;
+            padding: 10px 10px 10px 10px;
+            border: 0;
+        }
+        #content>form>button:hover{
+            cursor: pointer;
+        }
+       
     </style>
 </head>
 
@@ -184,8 +223,16 @@
                 <h2>profile</h2>
             </button>
         </a>
-        <h2>wishlist</h2>
-        <h2>bag</h2>
+        <a href="wishlist.html">
+            <button>
+                <h2>Wishlist</h2>
+            </button>
+        </a>
+        <a href="cart.html">
+            <button>
+                <h2>Bag</h2>
+            </button>
+        </a>
     </div>
     <div id="nothing"></div>
     <div id="head">
@@ -195,7 +242,7 @@
 
     <div id="main">
         <form>
-            <h4 onclick="overview()" id="category">Overview</h4>
+            <h4 onclick="overview()" id="over">Overview</h4>
             <hr>
             <h4 id="category">Orders</h4>
             <p>Orders & Returns</p>
@@ -206,7 +253,7 @@
             <p>Myn Cash</p>
             <hr>
             <h4 id="category">ACCOUNT</h4>
-            <p>Profile</p>
+            <p onclick="my_profile()">Profile</p>
             <p>Save cards</p>
             <p>Save VPA</p>
             <p>Addresses</p>
@@ -216,8 +263,9 @@
             <p>Terms of Use</p>
             <p>Privacy Policy</p>
         </form>
-        <div id="content">
 
+        <div id="content">
+           
         </div>
     </div>
 
@@ -226,53 +274,141 @@
 
 </html>
 <script>
-    function overview(){
+    function overview() {
+        document.querySelector("#content").innerHTML=""
         let content = [
-        "Orders",
-        "collection And Wishlist",
-        "Myntra credit",
-        "MynCash",
-        "Saved cards",
-        "Saved VPA",
-        "Addresses",
-        "Coupons",
-        "Profile Details"
-    ]
-    let p = [
-        "Check your order status",
-        "check your Wishlist",
-        "Earn Myn Credit",
-        "earn myncash",
-        "check Your saved Cards",
-        "Check your VPA",
-        "Check your saved addresses",
-        "Earn and see your coupons",
-        "View your profile etails"
+            "Orders",
+            "collection And Wishlist",
+            "Myntra credit",
+            "MynCash",
+            "Saved cards",
+            "Saved VPA",
+            "Addresses",
+            "Coupons",
+            "Profile Details"
+        ]
+        let p = [
+            "Check your order status",
+            "check your Wishlist",
+            "Earn Myn Credit",
+            "earn myncash",
+            "check Your saved Cards",
+            "Check your VPA",
+            "Check your saved addresses",
+            "Earn and see your coupons",
+            "View your profile etails"
 
-    ]
+        ]
+        let my_email = JSON.parse(localStorage.getItem("details"))
 
-    let div = document.createElement("div")
-    div.setAttribute("id", "first")
-    let pic = document.createElement("img")
-    pic.setAttribute("src", "https://constant.myntassets.com/mymyntra/assets/img/default-image.png")
-    let email = document.createElement("p")
-    email.innerText = "varun@gmail.com"
-    div.append(pic, email)
-    document.querySelector("#content").append(div)
-    let div2 = document.createElement("div")
-    div2.setAttribute("id", "sec")
-    for (let i = 0; i < 9; i++) {
-        let x = document.createElement("div")
-        let pro = document.createElement("img")
-        pro.setAttribute("src", "https://constant.myntassets.com/mymyntra/assets/img/profile-orders.png")
-        let h2 = document.createElement("h3")
-        h2.innerText = content[i]
-        let m = document.createElement("p")
-        m.innerText = p[i]
-        x.append(pro, h2, m)
-        div2.append(x)
+        let div = document.createElement("div")
+        div.setAttribute("id", "first")
+        let pic = document.createElement("img")
+        pic.setAttribute("src", "https://constant.myntassets.com/mymyntra/assets/img/default-image.png")
+        let email = document.createElement("p")
+        email.innerText = my_email.email_entered
+        div.append(pic, email)
+        document.querySelector("#content").append(div)
+        let div2 = document.createElement("div")
+        div2.setAttribute("id", "sec")
+        for (let i = 0; i < 9; i++) {
+            let x = document.createElement("div")
+            let pro = document.createElement("img")
+            pro.setAttribute("src", "https://constant.myntassets.com/mymyntra/assets/img/profile-orders.png")
+            let h2 = document.createElement("h3")
+            h2.innerText = content[i]
+            let m = document.createElement("p")
+            m.innerText = p[i]
+            x.append(pro, h2, m)
+            div2.append(x)
+        }
+        document.querySelector("#content").append(div2)
     }
-    document.querySelector("#content").append(div2)
+
+   let x= JSON.parse(localStorage.getItem("New_Details"))
+    let form=document.createElement("form")
+    let h2=document.createElement("h2")
+    h2.innerText="Profile Details"
+    let hr=document.createElement("hr")
+    let div2=document.createElement("div")
+    let form1=document.createElement("form")
+    let form2=document.createElement("form")   
+    let fn1=document.createElement("p")
+    fn1.innerText="Full Name"
+    let fn2=document.createElement("p")
+    fn2.innerText="Email"
+    let fn3=document.createElement("p")
+    fn3.innerText="Mobile Number"
+    let fn4=document.createElement("p")
+    fn4.innerText="Gender"
+    let fn5=document.createElement("p")
+    fn5.innerText="Date of Birth"
+    form1.append(fn1,fn2,fn3,fn4,fn5)
+
+    let gn1=document.createElement("p")
+    gn1.innerText=x.name
+    let gn2=document.createElement("p")
+    gn2.innerText=x.email
+    let gn3=document.createElement("p")
+    gn3.innerText=x.mobile
+    let gn4=document.createElement("p")
+    gn4.innerText="--------"
+    let gn5=document.createElement("p")
+    gn5.innerText="--------"
+    form2.append(gn1,gn2,gn3,gn4,gn5)
+
+    div2.append(form1,form2)
+    let btn=document.createElement("button")
+    btn.innerText="Edit"
+    form.append(h2,hr,div2,btn)
+    document.querySelector("#content").append(form)
+
+
+
+    function my_profile(){
+        document.querySelector("#content").innerHTML=""
+        
+   let x= JSON.parse(localStorage.getItem("New_Details"))
+    let form=document.createElement("form")
+    let h2=document.createElement("h2")
+    h2.innerText="Profile Details"
+    let hr=document.createElement("hr")
+    let div2=document.createElement("div")
+    let form1=document.createElement("form")
+    let form2=document.createElement("form")   
+    let fn1=document.createElement("p")
+    fn1.innerText="Full Name"
+    let fn2=document.createElement("p")
+    fn2.innerText="Email"
+    let fn3=document.createElement("p")
+    fn3.innerText="Mobile Number"
+    let fn4=document.createElement("p")
+    fn4.innerText="Gender"
+    let fn5=document.createElement("p")
+    fn5.innerText="Date of Birth"
+    form1.append(fn1,fn2,fn3,fn4,fn5)
+
+    let gn1=document.createElement("p")
+    gn1.innerText=x.name
+    let gn2=document.createElement("p")
+    gn2.innerText=x.email
+    let gn3=document.createElement("p")
+    gn3.innerText=x.mobile
+    let gn4=document.createElement("p")
+    gn4.innerText="--------"
+    let gn5=document.createElement("p")
+    gn5.innerText="--------"
+    form2.append(gn1,gn2,gn3,gn4,gn5)
+
+    div2.append(form1,form2)
+    let btn=document.createElement("button")
+    btn.innerText="Edit"
+    form.append(h2,hr,div2,btn)
+    document.querySelector("#content").append(form)
+
     }
-   
+
 </script>
+<!-- 
+let p=document.createElement("p")
+    p.innerText="Full Name"+x.name_entered -->

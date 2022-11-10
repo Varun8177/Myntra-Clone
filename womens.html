@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Womens-page</title>
     <style>
-           #nav>a>img {
+        #nav>a>img {
             height: 120px;
             width: 150px;
         }
@@ -63,8 +64,118 @@
             height: 150px;
         }
 
+        #main>form {
+            border: 1px solid rgb(201, 201, 201);
+            width: 150px;
+            text-align: center;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            text-align: left;
+            padding-left: 5px;
+
+        }
+
+        #main>form>p:hover {
+            cursor: pointer;
+            color: aquamarine;
+        }
+
+        #main {
+            border: 0px solid red;
+            margin-top: -10px;
+            justify-content: space-around;
+            margin-bottom: 50px;
+            position: fixed;
+            margin-left: 20px;
+        }
+
+
+        #content {
+            /* border: 2px solid black; */
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-auto-rows: auto;
+        }
+
+
+
+        #cart {
+            display: block;
+            width: 85%;
+            margin: auto;
+            margin-bottom: 20px;
+            background-color: rgb(255, 63, 108);
+            border: 0;
+            height: 30px;
+            color: white;
+        }
+
+
+        #cart:hover {
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        #content>div>img {
+            display: block;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        #content>div>p {
+            margin-left: 25px;
+        }
+
+        #content>div>h2 {
+            margin-left: 25px;
+        }
+
+        #wish {
+            border-radius: 50px;
+            display: block;
+            width: 20%;
+            margin: auto;
+            margin-bottom: 20px;
+            background-color: rgb(255, 63, 108);
+            border: 0;
+            height: 30px;
+            color: white;
+        }
+
+        hr {
+            width: 180px;
+            margin-bottom: 30px
+        }
+
+        #wish:hover {
+            cursor: pointer;
+            width: 85%;
+        }
+
+        #content>div>img {
+            display: block;
+            margin: auto;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        #left_empty {
+            width: 270px;
+            height: 200px;
+            /* border: 2px solid red; */
+        }
+
+        #move {
+            display: flex;
+        }
+
+        #main>p:hover {
+            color: rgb(255, 63, 108);
+            cursor: pointer;
+        }
     </style>
 </head>
+
 <body>
     <div id="nav">
         <!-- Navbar -->
@@ -90,21 +201,51 @@
         <h2>Home-Living</h2>
         <h2>Beauty</h2>
         <h2>Studio</h2>
-        <input type="text" placeholder="Search">
+        <input oninput="my_search()" type="text" placeholder="Search">
         <a href="profile.html">
             <button>
                 <h2>profile</h2>
             </button>
         </a>
-        <h2>wishlist</h2>
-        <h2>bag</h2>
+        <a href="wishlist.html">
+            <button>
+                <h2>Wishlist</h2>
+            </button>
+        </a>
+        <a href="cart.html">
+            <button>
+                <h2>Bag</h2>
+            </button>
+        </a>
     </div>
-    <div id="nothing"></div>    
+    <div id="nothing"></div>
+    <div id="main">
+        <h2>FILTER</h2>
+        <p>Mens</p>
+        <p>Womens</p>
+        <p>Boys</p>
+        <p>Girls</p>
+        <hr>
+        <h2>SORT</h2>
+        <p onclick="lth()">Price: Low to High</p>
+        <p onclick="htl()">Price: High to Low</p>
+    </div>
+    <div id="move">
+        <div id="left_empty">
+
+        </div>
+        <div id="content">
+
+        </div>
+
+    </div>
+
 </body>
+
 </html>
 
 <script>
-   let data = [
+    let data = [
         {
             "category": "Child",
             "title": "HELLCAT",
@@ -6798,13 +6939,78 @@
             "rating_count": null
         }
     ]
-   
-    data.forEach((elem) => {
 
-let x = document.createElement("img")
-if (elem.images[0] !== null && elem.category == "Womens") {
-    x.setAttribute("src", elem.images[0])
-    document.querySelector("body").append(x)
-}
-})
+    let cart=JSON.parse(localStorage.getItem("cart")) ||[]
+
+    let Womens = data.filter((elem) => {
+        return elem.category == "Womens" && elem.images[0] !== null && elem.title != null && elem.discounted_price != null && elem.rating != null && elem.discount != null && elem.subtitle !== null
+    })
+    display(Womens)
+    function display(Womens) {
+        document.querySelector("#content").innerHTML = ""
+
+        Womens.forEach((elem) => {
+            let div = document.createElement("div")
+            let x = document.createElement("img")
+            let btn = document.createElement("button")
+            btn.innerText = "Add to Cart"
+            btn.addEventListener("click",function(){
+                cart.push(elem)
+                localStorage.setItem("cart",JSON.stringify(cart) )
+            })
+            let btn2 = document.createElement("button")
+            btn2.innerText = "Wish"
+            let h2 = document.createElement("h2")
+            h2.innerText = elem.title
+            let p2 = document.createElement("p")
+            p2.innerText = elem.subtitle
+            x.setAttribute("src", elem.images[0])
+            let price = document.createElement("p")
+            price.innerText = "Price: " + elem.discounted_price
+            let rating = document.createElement("p")
+            rating.innerText = "Rating: " + elem.rating
+            div.append(x, h2, p2, price, rating, btn, btn2)
+            btn2.setAttribute("id", "wish")
+            btn.setAttribute("id", "cart")
+            document.querySelector("#content").append(div)
+        })
+
+    }
+
+
+    let search = data.filter((elem) => {
+        return elem.category !== null && elem.images[0] !== null && elem.title != null
+            && elem.discounted_price != null && elem.rating != null && elem.discount != null
+    })
+    console.log(search)
+
+    function lth() {
+        Womens.sort((a, b) => {
+            return a.discounted_price - b.discounted_price
+        })
+        display(Womens)
+
+    }
+
+    function htl() {
+
+        Womens.sort((a, b) => {
+            return b.discounted_price - a.discounted_price
+        })
+        display(Womens)
+
+    }
+
+
+    function my_search() {
+        let x = document.querySelector("input").value
+        let newData = search.filter((elem) => {
+            return elem.subtitle.toLowerCase().includes(x.toLowerCase())
+
+        })
+        display(newData)
+
+    }
+
+
 </script>
