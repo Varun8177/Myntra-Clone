@@ -131,15 +131,13 @@
         }
 
         #wish {
-            border-radius: 50px;
             display: block;
-            width: 20%;
             margin: auto;
             margin-bottom: 20px;
-            background-color: rgb(255, 63, 108);
-            border: 0;
+            border: 2px solid rgb(197, 196, 196);
+            background-color: white;
+            width: 85%;
             height: 30px;
-            color: white;
         }
 
         hr {
@@ -149,7 +147,7 @@
 
         #wish:hover {
             cursor: pointer;
-            width: 85%;
+    border: 2px solid black;
         }
 
         #content>div>img {
@@ -210,7 +208,11 @@
                 <h2>profile</h2>
             </button>
         </a>
-        <h2>wishlist</h2>
+        <a href="wishlist.html">
+            <button>
+                <h2>Wishlist</h2>
+            </button>
+        </a>
         <a href="cart.html">
             <button>
                 <h2>Bag</h2>
@@ -219,10 +221,21 @@
     </div>
     <div id="nothing"></div>
     <div id="main">
+        <h2>FILTER</h2>
+        <p onclick="roadster()">Roadster</p>
+        <p onclick="hrx()">HRX</p>
+        <p onclick="TIGco()">The Indian Garage Co</p>
+        <p onclick="highlander()">HIGHLANDER</p>
+        <p onclick="kalini()">KALINI</p>
+        <p onclick="kk()">Khushal K</p>
+        <p onclick="anouk()">Anouk</p>
+        <p onclick="indo()">Indo Era</p>
+        <p onclick="hell()">HELLCAT</p>
+        <p onclick="vastra()">VASTRAMAY</p>  
+        <hr>
         <h2>SORT</h2>
         <p onclick="lth()">Price: Low to High</p>
         <p onclick="htl()">Price: High to Low</p>
-        <hr>
     </div>
     <div id="move">
         <div id="left_empty">
@@ -6934,21 +6947,22 @@
         }
     ] 
     let cart=JSON.parse(localStorage.getItem("cart")) ||[]
+   let wish=JSON.parse(localStorage.getItem("wish")) ||[]
     
     let men = data.filter((elem) => {
-        return elem.category == "Mens" && elem.images[0] !== null && elem.title != null && elem.discounted_price != null && elem.rating != null && elem.discount != null && elem.subtitle !== null
+        return elem.category !== "" && elem.images[0] !== null && elem.title != null && elem.discounted_price != null && elem.rating != null && elem.discount != null && elem.subtitle !== null
     })
-     let x = JSON.parse(localStorage.getItem("wish"))
-    display(x)
-    function display(x) {
+    display(men)
+    function display(men) {
         document.querySelector("#content").innerHTML = ""
 
-        x.forEach((elem,i) => {
+        men.forEach((elem) => {
             let div = document.createElement("div")
             let x = document.createElement("img")
             let btn = document.createElement("button")
             btn.innerText = "Add to Cart"
-            
+            let btn2 = document.createElement("button")
+            btn2.innerText = "Wish"
             let h2 = document.createElement("h2")
             h2.innerText = elem.title
             let p2 = document.createElement("p")
@@ -6959,21 +6973,60 @@
             let rating = document.createElement("p")
             rating.innerText = "Rating: " + elem.rating
             btn.addEventListener("click",function(){
-               del_elem(elem,i)
+                if(cart.includes(elem)){
+                    alert("Item already in cart")
+                }else{
+                    cart.push(elem)
+                localStorage.setItem("cart",JSON.stringify(cart) )
+                alert("Item Added to Bag")
+                }
+               
             })
-            div.append(x, h2, p2, price, rating, btn)
-     
+            btn2.addEventListener("click",function(){
+                if(wish.includes(elem)){
+                    alert("Item Already in Wishlist")
+                }else{
+                    wish.push(elem)
+                localStorage.setItem("wish",JSON.stringify(wish) )
+                console.log(wish)
+                alert("Item Added to Wishlist")
+                }
+                
+            })
+
+            div.append(x, h2, p2, price, rating, btn, btn2)
+            btn2.setAttribute("id", "wish")
             btn.setAttribute("id", "cart")
             document.querySelector("#content").append(div)
         })
 
     }
-    function del_elem(elem,i){
-        cart.push(elem)
-        localStorage.setItem("cart",JSON.stringify(cart) )
-        x.splice(i,1)
-        localStorage.setItem("wish",JSON.stringify(x))
-        display(x)
+   
+    function roadster(){        
+        let newData = search.filter((elem) => {
+            return elem.title=="Roadster"
+        })
+        display(newData)
+    }
+
+    function hrx(){        
+        let newData = search.filter((elem) => {
+            return elem.title=="HRX by Hrithik Roshan"
+        })
+        display(newData)
+    }
+    function TIGco(){        
+        let newData = search.filter((elem) => {
+            return elem.title=="The Indian Garage Co"
+        })
+        display(newData)
+    }
+
+    function highlander(){        
+        let newData = search.filter((elem) => {
+            return elem.title=="HIGHLANDER"
+        })
+        display(newData)
     }
 
 
@@ -6984,19 +7037,19 @@
     console.log(search)
 
     function lth() {
-        x.sort((a, b) => {
+        men.sort((a, b) => {
             return a.discounted_price - b.discounted_price
         })
-        display(x)
+        display(men)
 
     }
 
     function htl() {
 
-        x.sort((a, b) => {
+        men.sort((a, b) => {
             return b.discounted_price - a.discounted_price
         })
-        display(x)
+        display(men)
 
     }
 
@@ -7010,6 +7063,50 @@
         display(newData)
 
     }
+    function kalini(){
+        let newData = search.filter((elem) => {
+            return elem.title=="KALINI"
+
+        })
+        display(newData)
+    }
+    function kk(){
+        let newData = search.filter((elem) => {
+            return elem.title=="Khushal K"
+
+        })
+        display(newData)
+    }
     
+    function anouk(){
+        let newData = search.filter((elem) => {
+            return elem.title=="Anouk"
+
+        })
+        display(newData)
+    }
+    function indo(){
+        let newData = search.filter((elem) => {
+            return elem.title=="Indo Era"
+
+        })
+        display(newData)
+    }
+
+    function hell(){
+        let newData = search.filter((elem) => {
+            return elem.title=="HELLCAT"
+
+        })
+        display(newData)        
+    }
+    function vastra(){
+        let newData = search.filter((elem) => {
+            return elem.title=="VASTRAMAY"
+
+        })
+        display(newData)        
+    } 
+
 
 </script>
