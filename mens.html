@@ -112,7 +112,7 @@
 
 
         #cart:hover {
-            font-size: 20px;
+            background-color: rgb(237, 29, 78);
             cursor: pointer;
         }
 
@@ -131,15 +131,13 @@
         }
 
         #wish {
-            border-radius: 50px;
             display: block;
-            width: 20%;
             margin: auto;
             margin-bottom: 20px;
-            background-color: rgb(255, 63, 108);
-            border: 0;
+            border: 2px solid rgb(197, 196, 196);
+            background-color: white;
+            width: 85%;
             height: 30px;
-            color: white;
         }
 
         hr {
@@ -149,7 +147,7 @@
 
         #wish:hover {
             cursor: pointer;
-            width: 85%;
+    border: 2px solid black;
         }
 
         #content>div>img {
@@ -197,7 +195,11 @@
                 <h2>Kids</h2>
             </button>
         </a>
-        <h2>Home-Living</h2>
+        <a href="random.html">
+            <button>
+                <h2>Home-Living</h2>
+            </button>           
+        </a>
         <h2>Beauty</h2>
         <h2>Studio</h2>
         <input oninput="my_search()" type="text" placeholder="Search">
@@ -220,10 +222,10 @@
     <div id="nothing"></div>
     <div id="main">
         <h2>FILTER</h2>
-        <p>Mens</p>
-        <p>Womens</p>
-        <p>Boys</p>
-        <p>Girls</p>
+        <p onclick="roadster()">Roadster</p>
+        <p onclick="hrx()">HRX</p>
+        <p onclick="TIGco()">The Indian Garage Co</p>
+        <p onclick="highlander()">HIGHLANDER</p>
         <hr>
         <h2>SORT</h2>
         <p onclick="lth()">Price: Low to High</p>
@@ -6939,7 +6941,7 @@
         }
     ] 
     let cart=JSON.parse(localStorage.getItem("cart")) ||[]
-    let wish=JSON.parse(localStorage.getItem("wish")) ||[]
+   let wish=JSON.parse(localStorage.getItem("wish")) ||[]
     
     let men = data.filter((elem) => {
         return elem.category == "Mens" && elem.images[0] !== null && elem.title != null && elem.discounted_price != null && elem.rating != null && elem.discount != null && elem.subtitle !== null
@@ -6965,12 +6967,25 @@
             let rating = document.createElement("p")
             rating.innerText = "Rating: " + elem.rating
             btn.addEventListener("click",function(){
-                cart.push(elem)
+                if(cart.includes(elem)){
+                    alert("Item already in cart")
+                }else{
+                    cart.push(elem)
                 localStorage.setItem("cart",JSON.stringify(cart) )
+                alert("Item Added to Bag")
+                }
+               
             })
             btn2.addEventListener("click",function(){
-                wish.push(elem)
+                if(wish.includes(elem)){
+                    alert("Item Already in Wishlist")
+                }else{
+                    wish.push(elem)
                 localStorage.setItem("wish",JSON.stringify(wish) )
+                console.log(wish)
+                alert("Item Added to Wishlist")
+                }
+                
             })
 
             div.append(x, h2, p2, price, rating, btn, btn2)
@@ -6979,6 +6994,33 @@
             document.querySelector("#content").append(div)
         })
 
+    }
+   
+    function roadster(){        
+        let newData = search.filter((elem) => {
+            return elem.title=="Roadster"
+        })
+        display(newData)
+    }
+
+    function hrx(){        
+        let newData = search.filter((elem) => {
+            return elem.title=="HRX by Hrithik Roshan"
+        })
+        display(newData)
+    }
+    function TIGco(){        
+        let newData = search.filter((elem) => {
+            return elem.title=="The Indian Garage Co"
+        })
+        display(newData)
+    }
+
+    function highlander(){        
+        let newData = search.filter((elem) => {
+            return elem.title=="HIGHLANDER"
+        })
+        display(newData)
     }
 
 
@@ -7016,6 +7058,6 @@
 
     }
 
-    
+
 
 </script>

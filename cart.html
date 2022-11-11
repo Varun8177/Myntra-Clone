@@ -119,10 +119,60 @@
         #sec_main>div:nth-child(1){
             margin-right: 20px;
         }
-        button{
+        #rem{
             background-color: rgb(255, 63, 108);
             border: 0;
             color: white;
+        }
+        #coupons{
+            display: block;
+            font-size: 20px;
+        
+        }
+        #apply{
+            margin-left: 10px;
+            background-color: white;
+            color: rgb(255, 63, 108);;
+            border: 1px solid rgb(251, 140, 166);
+            height: 30px;
+        }
+        #input_coupon{
+            margin-bottom: 10px;
+            margin-top: 10px;
+            height: 30px;
+        }
+        #apply:hover{
+            background-color: white;    
+            color: rgb(246, 37, 86);
+            border: 1px solid rgb(246, 37, 86);        
+        }
+        #price{
+            display: flex;
+        }
+        #price>div{
+            height: auto;
+            width: 80%;
+            /* border: 2px solid red; */
+        }
+        #price>div:nth-child(1){
+            width:300px;
+        }
+
+        #total_amount{
+            display: flex;
+            /* border: 2px solid red; */
+            justify-content: space-between;
+            width: 250px;
+        }
+        #placeOrder{
+            width: 80%;
+            height: 50px;
+            background-color: rgb(246, 37, 86);
+            color: white;
+            border: 0;
+        }
+        #placeOrder:hover,#apply:hover{
+            cursor: pointer;
         }
     </style>
 </head>
@@ -137,15 +187,33 @@
         <img src="secure_bag.png" alt="">
     </div>
     <div id="main">
-        <h2>FILTER</h2>
-        <p>Mens</p>
-        <p>Womens</p>
-        <p>Boys</p>
-        <p>Girls</p>
+        <h2>Coupons</h2>
+        <div id="coupons">
+            <li>Apply Coupon</li>
+            <input id="input_coupon" type="text" placeholder="Enter Coupon Code">
+            <button onclick="app()" id="apply">Apply</button>
+        </div>
         <hr>
-        <h2>SORT</h2>
-        <p onclick="lth()">Price: Low to High</p>
-        <p onclick="htl()">Price: High to Low</p>
+        <h2>Price Details</h2>
+        <div id="price">
+            <div>
+                <p>Total MRP</p>
+                <p>coupon-discount</p>
+                <p>convenience fee</p>
+            </div>
+            <div id="price2"></div>
+            
+        </div>
+        <hr>
+        <div id="total_amount">
+            <h2>Total Amount</h2>
+            <h3 id="tp"></h3>
+        </div>
+        <a href="address.html">
+            <button id="placeOrder"><h3>Place Order</h3></button>
+        </a>
+       
+        
     </div>
     <div id="move">
         <div id="left_empty">
@@ -170,6 +238,9 @@
             <div>
                 <p id="items"></p>
             </div>
+            <div id="top">
+
+            </div>
 
         </div>
 
@@ -181,10 +252,20 @@
 
     let x = JSON.parse(localStorage.getItem("cart"))
     display(x)
+    price5(x)
+    
 
     function display(x) {
+        document.querySelector("#top").innerHTML=""   
+        document.querySelector("#tp").innerText="" 
+        let total = x.reduce((acc, el) => acc + Number(el.discounted_price), 0)
+        document.querySelector("#tp").innerText=total+"rs"
+        
+        
         document.querySelector("#items").innerText = "Items available in your bag: " + x.length
-        x.forEach(elem => {
+        x.forEach((elem,i) => {
+
+            let main = document.createElement("div")
             let div = document.createElement("div")
             let pic = document.createElement("img")
             pic.setAttribute("src", elem.images[0])
@@ -199,16 +280,70 @@
             rating.innerText="Rating: "+elem.rating
             let remove=document.createElement("button")
             remove.innerText="Remove"
+            remove.setAttribute("id","rem")
+            remove.addEventListener("click",function(){
+                del(elem,i,main)
+            })
             div.append(pic)
-            div2.append(h2, p2,price,rating,remove)          
-            let main = document.createElement("div")
+            div2.append(h2, p2,price,rating,remove)    
+               
+            
             main.append(div, div2)
             main.setAttribute("id","sec_main")
-            document.querySelector("#content").append(main)
+            document.querySelector("#top").append(main)
         });
 
 
     }
+    function del(elem,i,main){
+        x.splice(i,1)
+        localStorage.setItem("cart",JSON.stringify(x))
+        display(x)
+    }
+    
+    function price5(x){
+        let total = x.reduce((acc, el) => acc + Number(el.discounted_price), 0)
+                let p=document.createElement("p")
+        p.innerText=total+"rs"
+        p.setAttribute("id","pr")
+        let cp=document.createElement("p")
+       cp.innerText="------"
+       cp.setAttribute("id","cp")
+       
+        let cf=document.createElement("p")
+        cf.innerText="Free"
+        cf.style.color="green"
+        document.querySelector("#price2").append(p,cp,cf)
+        document.querySelector("#tp").innerText=total+"rs"
+    }
 
-
+    function app(){
+        let inp=document.querySelector("#input_coupon").value;
+        let total = x.reduce((acc, el) => acc + Number(el.discounted_price), 0)               
+        if(inp=="fashion30"){
+            
+            total=(total-300)
+            document.querySelector("#cp").innerText="-300"+"rs"
+            document.querySelector("#tp").innerText=total+"rs"
+            console.log(total)
+            
+        }else if(inp=="fashion20"){
+            total=total-200
+            document.querySelector("#cp").innerText="-200"+"rs"
+            document.querySelector("#tp").innerText=total+"rs"
+            console.log(total)    
+                    
+        }
+        else if(inp=="fashion10"){
+            total=total-100
+            document.querySelector("#cp").innerText="-100"+"rs"
+            document.querySelector("#tp").innerText=total+"rs"
+            console.log(total)    
+                   
+        }else{
+            document.querySelector("#pr").innerText=total+"rs"
+            document.querySelector("#tp").innerText=total+"rs" 
+                  
+        }
+    }
 </script>

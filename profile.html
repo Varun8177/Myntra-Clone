@@ -93,13 +93,15 @@
             cursor: default;
             color: gray;
         }
-        #over{
+
+        #over {
             text-align: left;
             cursor: default;
             color: gray;
 
         }
-        #over:hover{
+
+        #over:hover {
             cursor: pointer;
         }
 
@@ -129,7 +131,7 @@
         }
 
         #sec {
-            height: 700px;
+            height: 500px;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
@@ -160,35 +162,72 @@
             padding: 10px 50px 10px 0px;
 
         }
-        #content>form{
+
+        #content>form {
             width: 60%;
             padding-top: 30px;
             padding-left: 200px;
-          
+
         }
-        #content>form>div{
-           
+
+        #content>form>div {
+
             display: flex;
             justify-content: space-between;
         }
-        
-        #content>form>div>form>p{
+
+        #content>form>div>form>p {
             margin-bottom: 50px;
 
         }
-        #content>form>button{
+
+        #content>form>button {
             width: 80%;
             margin: auto;
-            background-color: rgb(255,63,108);
-            color:  white;
+            background-color: rgb(255, 63, 108);
+            color: white;
             font-size: 20px;
             padding: 10px 10px 10px 10px;
             border: 0;
         }
-        #content>form>button:hover{
+
+        #content>form>button:hover {
             cursor: pointer;
         }
-       
+
+        #coupon_design {
+            background-color: rgb(201, 203, 203);
+            height: 200px;
+            display: flex;
+            align-items: center;
+            /* border: 2px solid red; */
+            margin-bottom: 20px;
+        }
+
+        #coupon_design>h2 {
+            margin-right: 30px;
+            border: 2px solid black;
+            margin-left: 30px;
+            gap: 20px 10px;
+
+        }
+
+        #coupon_design>p {
+            margin-right: 20px;
+        }
+       /* .myimg2{
+        border: 2px solid red
+        
+       } */
+
+       #newdiv{
+        border: 0;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+       }
+       #newdiv>div:hover{
+        cursor: pointer;
+       }
     </style>
 </head>
 
@@ -214,10 +253,14 @@
                 <h2>Kids</h2>
             </button>
         </a>
-        <h2>Home-Living</h2>
+        <a href="random.html">
+            <button>
+                <h2>Home-Living</h2>
+            </button>
+        </a>
         <h2>Beauty</h2>
         <h2>Studio</h2>
-        <input type="text" placeholder="Search">
+        <!-- <input type="text" placeholder="Search"> -->
         <a href="profile.html">
             <button>
                 <h2>profile</h2>
@@ -245,19 +288,14 @@
             <h4 onclick="overview()" id="over">Overview</h4>
             <hr>
             <h4 id="category">Orders</h4>
-            <p>Orders & Returns</p>
+            <p onclick="order()">Orders & Returns</p>
             <hr>
             <h4 id="category">CREDITS</h4>
-            <p>Coupons</p>
-            <p>Myn Credit</p>
-            <p>Myn Cash</p>
+            <p onclick="coup()">Coupons</p>
             <hr>
             <h4 id="category">ACCOUNT</h4>
             <p onclick="my_profile()">Profile</p>
-            <p>Save cards</p>
-            <p>Save VPA</p>
-            <p>Addresses</p>
-            <p>Myntra Insider</p>
+            <p onclick="my_address()">Addresses</p>
             <hr>
             <h4 id="category">LEGAL</h4>
             <p>Terms of Use</p>
@@ -265,7 +303,7 @@
         </form>
 
         <div id="content">
-           
+
         </div>
     </div>
 
@@ -275,14 +313,11 @@
 </html>
 <script>
     function overview() {
-        document.querySelector("#content").innerHTML=""
+        document.querySelector("#content").innerHTML = ""
         let content = [
             "Orders",
             "collection And Wishlist",
-            "Myntra credit",
-            "MynCash",
             "Saved cards",
-            "Saved VPA",
             "Addresses",
             "Coupons",
             "Profile Details"
@@ -290,10 +325,7 @@
         let p = [
             "Check your order status",
             "check your Wishlist",
-            "Earn Myn Credit",
-            "earn myncash",
             "check Your saved Cards",
-            "Check your VPA",
             "Check your saved addresses",
             "Earn and see your coupons",
             "View your profile etails"
@@ -311,7 +343,7 @@
         document.querySelector("#content").append(div)
         let div2 = document.createElement("div")
         div2.setAttribute("id", "sec")
-        for (let i = 0; i < 9; i++) {
+        for (let i = 0; i < 6; i++) {
             let x = document.createElement("div")
             let pro = document.createElement("img")
             pro.setAttribute("src", "https://constant.myntassets.com/mymyntra/assets/img/profile-orders.png")
@@ -325,90 +357,187 @@
         document.querySelector("#content").append(div2)
     }
 
-   let x= JSON.parse(localStorage.getItem("New_Details"))
-    let form=document.createElement("form")
-    let h2=document.createElement("h2")
-    h2.innerText="Profile Details"
-    let hr=document.createElement("hr")
-    let div2=document.createElement("div")
-    let form1=document.createElement("form")
-    let form2=document.createElement("form")   
-    let fn1=document.createElement("p")
-    fn1.innerText="Full Name"
-    let fn2=document.createElement("p")
-    fn2.innerText="Email"
-    let fn3=document.createElement("p")
-    fn3.innerText="Mobile Number"
-    let fn4=document.createElement("p")
-    fn4.innerText="Gender"
-    let fn5=document.createElement("p")
-    fn5.innerText="Date of Birth"
-    form1.append(fn1,fn2,fn3,fn4,fn5)
+    let x = JSON.parse(localStorage.getItem("New_Details"))
+    let form = document.createElement("form")
+    let h2 = document.createElement("h2")
+    h2.innerText = "Profile Details"
+    let hr = document.createElement("hr")
+    let div2 = document.createElement("div")
+    let form1 = document.createElement("form")
+    let form2 = document.createElement("form")
+    let fn1 = document.createElement("p")
+    fn1.innerText = "Full Name"
+    let fn2 = document.createElement("p")
+    fn2.innerText = "Email"
+    let fn3 = document.createElement("p")
+    fn3.innerText = "Mobile Number"
+    form1.append(fn1, fn2, fn3)
 
-    let gn1=document.createElement("p")
-    gn1.innerText=x.name
-    let gn2=document.createElement("p")
-    gn2.innerText=x.email
-    let gn3=document.createElement("p")
-    gn3.innerText=x.mobile
-    let gn4=document.createElement("p")
-    gn4.innerText="--------"
-    let gn5=document.createElement("p")
-    gn5.innerText="--------"
-    form2.append(gn1,gn2,gn3,gn4,gn5)
+    let gn1 = document.createElement("p")
+    gn1.innerText = x.name
+    let gn2 = document.createElement("p")
+    gn2.innerText = x.email
+    let gn3 = document.createElement("p")
+    gn3.innerText = x.mobile
 
-    div2.append(form1,form2)
-    let btn=document.createElement("button")
-    btn.innerText="Edit"
-    form.append(h2,hr,div2,btn)
+    form2.append(gn1, gn2, gn3)
+
+    div2.append(form1, form2)
+    form.append(h2, hr, div2)
     document.querySelector("#content").append(form)
 
 
 
-    function my_profile(){
-        document.querySelector("#content").innerHTML=""
-        
-   let x= JSON.parse(localStorage.getItem("New_Details"))
-    let form=document.createElement("form")
-    let h2=document.createElement("h2")
-    h2.innerText="Profile Details"
-    let hr=document.createElement("hr")
-    let div2=document.createElement("div")
-    let form1=document.createElement("form")
-    let form2=document.createElement("form")   
-    let fn1=document.createElement("p")
-    fn1.innerText="Full Name"
-    let fn2=document.createElement("p")
-    fn2.innerText="Email"
-    let fn3=document.createElement("p")
-    fn3.innerText="Mobile Number"
-    let fn4=document.createElement("p")
-    fn4.innerText="Gender"
-    let fn5=document.createElement("p")
-    fn5.innerText="Date of Birth"
-    form1.append(fn1,fn2,fn3,fn4,fn5)
+    function my_profile() {
+        document.querySelector("#content").innerHTML = ""
 
-    let gn1=document.createElement("p")
-    gn1.innerText=x.name
-    let gn2=document.createElement("p")
-    gn2.innerText=x.email
-    let gn3=document.createElement("p")
-    gn3.innerText=x.mobile
-    let gn4=document.createElement("p")
-    gn4.innerText="--------"
-    let gn5=document.createElement("p")
-    gn5.innerText="--------"
-    form2.append(gn1,gn2,gn3,gn4,gn5)
+        let x = JSON.parse(localStorage.getItem("New_Details"))
+        let form = document.createElement("form")
+        let h2 = document.createElement("h2")
+        h2.innerText = "Profile Details"
+        let hr = document.createElement("hr")
+        let div2 = document.createElement("div")
+        let form1 = document.createElement("form")
+        let form2 = document.createElement("form")
+        let fn1 = document.createElement("p")
+        fn1.innerText = "Full Name"
+        let fn2 = document.createElement("p")
+        fn2.innerText = "Email"
+        let fn3 = document.createElement("p")
+        fn3.innerText = "Mobile Number"
+        form1.append(fn1, fn2, fn3)
 
-    div2.append(form1,form2)
-    let btn=document.createElement("button")
-    btn.innerText="Edit"
-    form.append(h2,hr,div2,btn)
-    document.querySelector("#content").append(form)
+        let gn1 = document.createElement("p")
+        gn1.innerText = x.name
+        let gn2 = document.createElement("p")
+        gn2.innerText = x.email
+        let gn3 = document.createElement("p")
+        gn3.innerText = x.mobile
+
+        form2.append(gn1, gn2, gn3)
+
+        div2.append(form1, form2)
+
+        form.append(h2, hr, div2)
+        document.querySelector("#content").append(form)
 
     }
 
+
+    function coup() {
+        document.querySelector("#content").innerHTML = ""
+        let arr = ["30% OFF", "20% OFF", "10% OFF"]
+        let arr1 = ["fashion30", "fashion20", "fashion10"]
+
+        for (let i = 0; i < 3; i++) {
+            let div = document.createElement("div")
+            div.setAttribute("id", "coupon_design")
+            let pic = document.createElement("h2")
+            pic.innerText = arr[i]
+            let des = document.createElement("p")
+            des.innerText = "On any purchase starting from rs.0"
+            let expire = document.createElement("p")
+            expire.innerText = "Expire date: November 2045"
+            let code = document.createElement("h3")
+            code.innerText = "code: " + arr1[i]
+
+            div.append(pic, des, expire, code)
+            document.querySelector("#content").append(div)
+        }
+
+
+    }
+
+
+
+
+    function my_address() {
+        document.querySelector("#content").innerHTML = ""
+
+        let x = JSON.parse(localStorage.getItem("address"))
+        let form = document.createElement("form")
+        let h2 = document.createElement("h2")
+        h2.innerText = "My Address"
+        let hr = document.createElement("hr")
+        let div2 = document.createElement("div")
+        let form1 = document.createElement("form")
+        let form2 = document.createElement("form")
+        let fn1 = document.createElement("p")
+        fn1.innerText = "Full Name"
+        let fn2 = document.createElement("p")
+        fn2.innerText = "Mobile Number"
+        let fn3 = document.createElement("p")
+        fn3.innerText = "Address"
+        let fn4 = document.createElement("p")
+        fn4.innerText = "State"
+        let fn5 = document.createElement("p")
+        fn5.innerText = "City"
+        let fn6 = document.createElement("p")
+        fn6.innerText = "Pin Code"
+        form1.append(fn1, fn2, fn3, fn4, fn5, fn6)
+
+        let gn1 = document.createElement("p")
+        gn1.innerText = x.name
+        let gn2 = document.createElement("p")
+        gn2.innerText = x.num
+        let gn3 = document.createElement("p")
+        gn3.innerText = x.ad
+        let gn4 = document.createElement("p")
+        gn4.innerText = x.state
+        let gn5 = document.createElement("p")
+        gn5.innerText = x.city
+        let gn6 = document.createElement("p")
+        gn6.innerText = x.pin
+        form2.append(gn1, gn2, gn3, gn4, gn5, gn6)
+
+        div2.append(form1, form2)
+
+        form.append(h2, hr, div2)
+        document.querySelector("#content").append(form)
+
+    }
+
+    function order(){
+        document.querySelector("#content").innerHTML=""
+        
+        
+let x=JSON.parse(localStorage.getItem("orders"))
+let h2=document.createElement("h2")
+h2.innerText=x.length+" Items to be delevered"
+h2.setAttribute("class","myimg2")
+
+let arr=["Estimated Time: 2 days" ,"Estimated Time: 6 days","Estimated Time: 10 days"]
+let div3=document.createElement("div")
+div3.setAttribute("id","newdiv")
+x.forEach((elem,i) => {
+    let div=document.createElement("div")
+        // div.setAttribute("id","mydiv")
+        if(i==arr.length){
+            i=0
+        }
+        let img=document.createElement("img")
+        img.setAttribute("src",elem.images[0])
+        
+        let status=document.createElement("h2")
+        status.innerText="status: Pending"
+        let p2=document.createElement("h3")
+        p2.innerText=elem.title
+        let p3=document.createElement("p")
+        p3.innerText=elem.subtitle
+        p4=document.createElement("h3")
+        p4.innerText=arr[i]
+        
+        div.append(img,status,p2,p3,p4)
+        // div.style.border="1px solid rgb(201, 203, 203)"
+        div.style.marginBottom="10px"
+        div.style.width="300px"
+        div.style.marginLeft="10px"
+       
+    div3.append(div) 
+});
+document.querySelector("#content").append(h2,div3)
+
+    }
+
+
 </script>
-<!-- 
-let p=document.createElement("p")
-    p.innerText="Full Name"+x.name_entered -->
