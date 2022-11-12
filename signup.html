@@ -149,8 +149,16 @@
                 <h2>Home-Living</h2>
             </button>           
         </a>
-        <h2>Beauty</h2>
-        <h2>Studio</h2>
+        <a href="beauty.html">
+            <button>
+                <h2>Beauty</h2>
+            </button>           
+        </a>
+        <a href="studio.html">
+            <button>
+                <h2>Studio</h2>
+            </button>           
+        </a>
         <input type="text" placeholder="Search">
         <a href="profile.html">
             <button>
@@ -172,7 +180,7 @@
         <p>Email</p>
         <input id="email" type="text" placeholder="Enter Email">
         <p>Password</p>
-        <input id="pass" type="text" placeholder="Enter Password">
+        <input id="pass" type="password" placeholder="Enter Password">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus obcaecati dolore labore cumque minima
             a.</p>
         <a id="" href="login.html">
@@ -196,7 +204,7 @@
 
             let details_obj = { name_entered, email_entered, pass_entered }
             localStorage.setItem("details", JSON.stringify(details_obj))
-
+localStorage.setItem("Signup",true)
         } else {
             event.preventDefault()
             alert("Please Fill Details")
