@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #nav>a>img {
+            height: 120px;
+            width: 150px;
+            margin-left: -200px;
+        }
+
+        h1 {
+            color: rgb(62, 65, 82);
+        }
+
+        #nav {
+            display: flex;
+            justify-content: space-evenly;
+            width: 80%;
+            align-items: center;
+            box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+            margin-bottom: 20px;
+            background-color: white;
+            width: 100%;
+            margin-top: -20px;
+        }
+
+        #nav>input {
+            width: 20%;
+            height: 40px;
+            width: 30%;
+            align-self: center;
+            border: 0px solid grey;
+            background-color: rgb(239, 239, 239);
+            border-radius: 5px;
+            padding-left: 10px;
+        }
+
+        #nav>h2:hover {
+            text-decoration-line: underline;
+            text-decoration-color: brown;
+            text-underline-offset: 45px;
+            text-decoration-thickness: 5px;
+        }
+
+        #nav>a>button {
+            border: 0;
+            background-color: white;
+        }
+
+        #nav>a>button:hover {
+            text-decoration-line: underline;
+            text-decoration-color: brown;
+            text-underline-offset: 45px;
+            text-decoration-thickness: 5px;
+            cursor: pointer;
+        }
+        #main{
+            width: 50%;
+            margin: auto;
+        }
+        #add{
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            padding: 10px 20px 20px 20px;
+        }
+       #add>a>button{
+        display: block;
+        width: 80%;
+        margin: auto;
+        height: 40px;
+        background-color: rgb(255, 63, 108);
+        border: 0;
+        margin-top: 20px;
+       }
+       #add>a>button:hover{
+        cursor: pointer;
+       }
+       #add>input{
+        display: block;
+        margin: auto;
+        margin-top: -15px;
+        margin-bottom: 5px;
+        width: 79%;        
+       }
+       #add>p{
+        margin-left: 70px;
+       }
+    </style>
+</head>
+
+<body>
+    <div id="nav">
+        <!-- Navbar -->
+        <a href="myntra.html">
+            <img src="https://www.logolynx.com/images/logolynx/e5/e5856b5c633b21b213f91bd753e0383a.jpeg" alt="">
+        </a>
+        <img src="address.png" alt="">
+        <img src="secure_bag.png" alt="">
+    </div>
+   <div id="main">
+    <h2>Add Delevery Address</h2>
+    <div id="add">
+        <p>Name</p>
+        <input type="text" id="name">
+        <p>Mobile Number</p>
+        <input type="Number" id="num">
+        <p>Address</p>
+        <input type="text" id="ad">
+        <p>State</p>
+        <input type="text" id="state">
+        <p>City</p>
+        <input type="text" id="city">
+        <p>Pin Code</p>
+        <input type="Number" name="" id="pin">
+        <a href="payment.html">
+            <button id="log">Proceed</button>
+        </a>
+        
+    </div>
+   </div>
+</body>
+
+</html>
+<script>
+    document.querySelector("#log").addEventListener("click", myfun)
+    function myfun(event) {
+        let name=document.querySelector("#name").value;
+    let num=document.querySelector("#num").value;
+    let ad=document.querySelector("#ad").value;
+    let state=document.querySelector("#state").value;
+    let city=document.querySelector("#city").value;
+    let pin=document.querySelector("#pin").value;
+
+    if(name=="" || num=="" || ad=="" || state=="" || city=="" || pin==""){
+            event.preventDefault();
+            alert("Please fill Details")
+        }
+
+        if(num.length!==10){
+            event.preventDefault();
+            alert("Enter Valid Mobile Number")
+        }else{
+            let obj={
+                name,num,ad,state,city,pin
+            }
+            localStorage.setItem("address",JSON.stringify(obj))
+        }
+    }
+</script>
