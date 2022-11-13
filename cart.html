@@ -94,7 +94,7 @@
         }
 
         #content>div>li {
-            color: grey;
+            color: rgb(106, 105, 105);
         }
 
         #content>div {
@@ -123,6 +123,9 @@
             background-color: rgb(255, 63, 108);
             border: 0;
             color: white;
+        }
+        #rem:hover{
+            cursor: pointer;
         }
         #coupons{
             display: block;
@@ -170,9 +173,22 @@
             background-color: rgb(246, 37, 86);
             color: white;
             border: 0;
+            margin-bottom: 20px;
         }
-        #placeOrder:hover,#apply:hover{
+        #placeOrder:hover,#apply:hover,#hide:hover{
             cursor: pointer;
+        }
+        #hide{
+            visibility: hidden;
+            width: 80%;
+            height: 50px;
+            background-color: rgb(246, 37, 86);
+            color: white;
+            border: 0;
+            display: block;
+        }
+        a{
+            text-decoration: none;
         }
     </style>
 </head>
@@ -180,7 +196,7 @@
 <body>
     <div id="nav">
         <!-- Navbar -->
-        <a href="myntra.html">
+        <a href="index.html">
             <img src="https://www.logolynx.com/images/logolynx/e5/e5856b5c633b21b213f91bd753e0383a.jpeg" alt="">
         </a>
         <img src="payment_bag.png" alt="">
@@ -212,6 +228,10 @@
         <a href="address.html">
             <button id="placeOrder"><h3>Place Order</h3></button>
         </a>
+        <a href="signup.html">
+            <button id="hide"><h3>Sign-up</h3></button>
+        </a>
+        
        
         
     </div>
@@ -345,5 +365,18 @@
             document.querySelector("#tp").innerText=total+"rs" 
                   
         }
+    }
+
+    document.querySelector("#placeOrder").addEventListener("click",my_place)
+
+    function my_place(event){
+let x=localStorage.getItem("Signup")
+console.log(x)
+
+if(x==undefined){
+    event.preventDefault()
+    alert("Signup to place order")
+    document.querySelector("#hide").style.visibility = 'visible'
+}
     }
 </script>
