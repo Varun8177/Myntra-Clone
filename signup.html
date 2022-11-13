@@ -15,9 +15,8 @@
         h1 {
             color: rgb(62, 65, 82);
         }
-
-        body {
-            background-color: rgb(252, 239, 228)
+        body{
+           background-color:  rgb(252,239,228)
         }
 
         #nav {
@@ -64,10 +63,9 @@
         }
 
         #nothing {
-            background-color: rgb(252, 239, 228);
+            background-color:  rgb(252,239,228);
             height: 150px;
         }
-
         #main {
             border: 0;
             height: 550px;
@@ -75,7 +73,6 @@
             margin: auto;
             box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
             background-color: white;
-            padding-top: 10px;
         }
 
         #main>img {
@@ -85,63 +82,50 @@
             margin: auto;
             display: block;
             margin-bottom: 20px;
-
+           
         }
-
-        #below_img {
+        #below_img{
             display: flex;
             align-items: center;
             margin-left: 30px;
         }
-
-        #below_img>p {
+        #below_img>p{
             margin-left: 10px;
             margin-right: 10px;
         }
-
-        #main>input {
-            display: block;
+       #main> input{
+        display: block;
             width: 80%;
             margin: auto;
             height: 50px;
             padding-left: 10px;
         }
-
-        #main>p {
+        #main>p{
             margin-left: 30px;
-            color: rgb(106, 105, 105);
+            color: rgb(162,163,172);
         }
-
-        #log {
+       #log{
             width: 80%;
             display: block;
             margin: auto;
             height: 50px;
-            background-color: rgb(255, 63, 108);
+            background-color: rgb(255,63,108);
             color: white;
             border: 0;
-
         }
-
-        #log:hover {
-            cursor: pointer;
+        #log:hover{
+          cursor: pointer;
         }
+        
 
-        #an {
-            text-decoration: none;
-        }
-
-        #main>h2 {
-            margin-left: 150px;
-
-        }
+       
     </style>
 </head>
 
 <body>
     <div id="nav">
         <!-- Navbar -->
-        <a href="index.html">
+        <a href="myntra.html">
             <img src="https://www.logolynx.com/images/logolynx/e5/e5856b5c633b21b213f91bd753e0383a.jpeg" alt="">
         </a>
 
@@ -163,29 +147,25 @@
         <a href="random.html">
             <button>
                 <h2>Home-Living</h2>
-            </button>
+            </button>           
         </a>
         <a href="beauty.html">
             <button>
                 <h2>Beauty</h2>
-            </button>
+            </button>           
         </a>
         <a href="studio.html">
             <button>
                 <h2>Studio</h2>
-            </button>
+            </button>           
         </a>
-    
+        <input type="text" placeholder="Search">
         <a href="profile.html">
             <button>
                 <h2>profile</h2>
             </button>
         </a>
-        <a href="wishlist.html">
-            <button>
-                <h2>Wishlist</h2>
-            </button>
-        </a>
+        <h2>wishlist</h2>
         <a href="cart.html">
             <button>
                 <h2>Bag</h2>
@@ -201,8 +181,9 @@
         <input id="email" type="text" placeholder="Enter Email">
         <p>Password</p>
         <input id="pass" type="password" placeholder="Enter Password">
-        <p>by continuing ,I agree to the <a href="terms.html">Terms of Use</a></p>
-        <a id="an" href="login.html">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus obcaecati dolore labore cumque minima
+            a.</p>
+        <a id="" href="login.html">
             <button id="log">SIGN UP</button>
         </a>
         <p>Already have an account? <a href="login.html">Log In</a></p>
@@ -223,7 +204,7 @@
 
             let details_obj = { name_entered, email_entered, pass_entered }
             localStorage.setItem("details", JSON.stringify(details_obj))
-            localStorage.setItem("Signup", true)
+localStorage.setItem("Signup",true)
         } else {
             event.preventDefault()
             alert("Please Fill Details")

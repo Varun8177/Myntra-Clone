@@ -131,17 +131,15 @@
         }
 
         #wish {
+            border-radius: 50px;
             display: block;
+            width: 20%;
             margin: auto;
             margin-bottom: 20px;
-            border: 2px solid rgb(197, 196, 196);
-            background-color: white;
-            width: 85%;
+            background-color: rgb(255, 63, 108);
+            border: 0;
             height: 30px;
-        }
-        #wish:hover {
-            cursor: pointer;
-            border: 2px solid black;
+            color: white;
         }
 
         hr {
@@ -180,7 +178,7 @@
 <body>
     <div id="nav">
         <!-- Navbar -->
-        <a href="index.html">
+        <a href="myntra.html">
             <img src="https://www.logolynx.com/images/logolynx/e5/e5856b5c633b21b213f91bd753e0383a.jpeg" alt="">
         </a>
 
@@ -220,11 +218,7 @@
                 <h2>profile</h2>
             </button>
         </a>
-        <a href="wishlist.html">
-            <button>
-                <h2>Wishlist</h2>
-            </button>
-        </a>
+        <h2>wishlist</h2>
         <a href="cart.html">
             <button>
                 <h2>Bag</h2>
@@ -6975,14 +6969,7 @@
             btn.addEventListener("click",function(){
                del_elem(elem,i)
             })
-            let remove=document.createElement("button")
-            remove.innerText="Remove"
-            remove.setAttribute("id","rem")
-            remove.addEventListener("click",function(){
-                del(elem,i)
-            })
-            remove.setAttribute("id", "wish")
-            div.append(x, h2, p2, price, rating, btn,remove)
+            div.append(x, h2, p2, price, rating, btn)
      
             btn.setAttribute("id", "cart")
             document.querySelector("#content").append(div)
@@ -6996,11 +6983,7 @@
         localStorage.setItem("wish",JSON.stringify(x))
         display(x)
     }
-    function del(elem,i,main){
-        x.splice(i,1)
-        localStorage.setItem("wish",JSON.stringify(x))
-        display(x)
-    }
+
 
     let search = data.filter((elem) => {
         return elem.category !== null && elem.images[0] !== null && elem.title != null
